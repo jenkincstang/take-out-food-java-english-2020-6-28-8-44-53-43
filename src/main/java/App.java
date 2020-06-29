@@ -41,7 +41,7 @@ public class App {
     	//TODO: write code here
     	for(String input:inputs) {
     		input = input.trim();
-    		input = input.substring(1, input.length()-1);
+    		//input = input.substring(1, input.length()-1);
     		//System.out.println(input);
     		String[] inputMapStrings = input.split("x");
     		map.put(inputMapStrings[0].trim(), Integer.parseInt(inputMapStrings[1].trim()));
@@ -52,7 +52,7 @@ public class App {
     	List<SalesPromotion> salesPromotions = salesPromotionRepository.findAll();
     	SalesPromotion halfPriceSalesPromotion = null;
     	for(SalesPromotion sp:salesPromotions) {
-    		if(sp.getType().equalsIgnoreCase("Half Price")) {
+    		if(sp.getType().equalsIgnoreCase("50%_DISCOUNT_ON_SPECIFIED_ITEMS")) {
     			halfPriceSalesPromotion = sp;
     			break;
     		}
@@ -94,9 +94,9 @@ public class App {
     		
     		accumulatedInformation += "-----------------------------------\n";
     		accumulatedInformation += "Promotion used:\n";
-    		accumulatedInformation += "Half price for certain dishes ("+getAndString(halfPriceDishArrayList)+"), saving "+deductPrice.intValue()+" yuan\n";
+    		accumulatedInformation += "Half price for certain dishes ("+getAndString(halfPriceDishArrayList)+")，saving "+deductPrice.intValue()+" yuan\n";
     		accumulatedInformation += "-----------------------------------\n";
-    		accumulatedInformation += "Total: "+(totalPrice.intValue()-deductPrice.intValue())+" yuan\n";
+    		accumulatedInformation += "Total："+(totalPrice.intValue()-deductPrice.intValue())+" yuan\n";
     		accumulatedInformation += "===================================";
 //============= Order details =============
 //Braised chicken x 1 = 18 yuan
@@ -121,9 +121,9 @@ public class App {
     		
     		accumulatedInformation += "-----------------------------------\n";
     		accumulatedInformation += "Promotion used:\n";
-    		accumulatedInformation += "Deduct 6 yuan when the order reaches 30 yuan, saving 6 yuan\n";
+    		accumulatedInformation += "满30减6 yuan，saving 6 yuan\n";
     		accumulatedInformation += "-----------------------------------\n";
-    		accumulatedInformation += "Total: "+(totalPrice.intValue()-6)+" yuan\n";
+    		accumulatedInformation += "Total："+(totalPrice.intValue()-6)+" yuan\n";
     		accumulatedInformation += "===================================";
     	}else {
     		accumulatedInformation += "============= Order details =============\n";
@@ -137,11 +137,11 @@ public class App {
     		}
     		
     		accumulatedInformation += "-----------------------------------\n";
-    		accumulatedInformation += "Total: "+(totalPrice.intValue())+" yuan\n";
+    		accumulatedInformation += "Total："+(totalPrice.intValue())+" yuan\n";
     		accumulatedInformation += "===================================";
     	}
     	
-    	//System.out.println(accumulatedInformation);
+    	System.out.println(accumulatedInformation);
         return accumulatedInformation;
     }
     
@@ -160,10 +160,10 @@ public class App {
     	
     	String listString = "";
     	for(String str:list) {
-    		listString += str.toLowerCase() + " and ";
+    		listString += str + "，";
     	}
-    	listString = listString.substring(0, listString.length()-5);
-    	System.out.println(listString);
+    	listString = listString.substring(0, listString.length()-1);
+    	//System.out.println(listString);
     	return listString;
     }
 }
